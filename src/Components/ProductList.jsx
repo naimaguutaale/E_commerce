@@ -18,7 +18,7 @@ const handleSearch=(event)=>{
       setLoading(true)
         axios.get("https://fakestoreapi.com/products").then((Response)=>{
             setData(Response.data)
-            console.log(Response.data)
+            // console.log(Response.data)
             setLoading(false)
 
         }).catch((error)=>{
@@ -30,11 +30,11 @@ const handleSearch=(event)=>{
     },[])
 
     
-  return <div >
+  return  loading===true?<ClipLoader loading={loading} /> : <div >
     <Header search={handleSearch}/>
     {
-  loading===true?<ClipLoader loading={loading} /> :<div 
-   className=' pm-[200px] grid sm:grid-cols-[300px_300px_300px_300px] sm:gap-6 sm:ml-10  gap-5  grid-cols-[200px_200px] '>
+  <div 
+   className=' pm-[200px] grid sm:grid-cols-[300px_300px_300px_300px] sm:gap-6 sm:ml-10   mr-[-50]  grid-cols-[200px_200px] '>
        {
         data.filter((Products)=>{
           return searchItem.toLowerCase()==""?Products:
